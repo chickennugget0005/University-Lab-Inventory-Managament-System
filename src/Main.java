@@ -1,3 +1,4 @@
+package src;
 import javax.swing.SwingUtilities;
 import ui.LabSetupScreen;
 import ui.LoginScreen;
@@ -13,11 +14,9 @@ public final class Main {
 
             if (!isConfigured) {
                 new LabSetupScreen().setVisible(true);
-
             } else {
                 new LoginScreen().setVisible(true);
             }
-        }    
-        );
+        });
     }
 }
