@@ -4,38 +4,38 @@ import java.util.ArrayList;
 
 public class Lab {
     //Attributes
-    String name;
-    int nextID;
-    ArrayList<Room> rooms;
+    private String name;
+    private int nextID;
+    private ArrayList<Room> rooms;
 
     //Constructors
-    Lab(String name, int nextID, ArrayList<Room> rooms) { //constructor for restoring a lab from a save file
+    public Lab(String name, int nextID, ArrayList<Room> rooms) { //constructor for restoring a lab from a save file
         this.name = name;
         this.nextID = nextID;
         this.rooms = rooms;
     }
 
-    Lab(String name) { //constructor for creating a new lab with default attributes
+    public Lab(String name) { //constructor for creating a new lab with default attributes
         this.name = name;
         this.nextID = 1;
         this.rooms = new ArrayList<>();
     }
 
     //Functional methods
-    int generateID() { //generate a new ID for items created within the lab, centralized so all items have unique IDs
+    public int generateID() { //generate a new ID for items created within the lab, centralized so all items have unique IDs
         int selectID = nextID;
         nextID++;
 
         return selectID;
     }
 
-    void addRoom(Room room) { //add a new room into the array when user adds rooms to lab structure
+    public void addRoom(Room room) { //add a new room into the array when user adds rooms to lab structure
         if(room != null) {
             rooms.add(room);
         }
     }
 
-    boolean removeRoom(Room room) { //remove room from the array when user removes rooms to lab structure
+    public boolean removeRoom(Room room) { //remove room from the array when user removes rooms to lab structure
         if(rooms.contains(room)) {
             rooms.remove(room);
 
@@ -46,16 +46,16 @@ public class Lab {
     }
 
     //getters
-    String getName() {
+    public String getName() {
         return name;
     }
 
-    ArrayList<Room> getRooms() {
+    public ArrayList<Room> getRooms() {
         return rooms;
     }
 
     //setters
-    boolean setName(String name) {
+    public boolean setName(String name) {
         if(name != null && !name.isEmpty()) {
             this.name = name;
             return true;
