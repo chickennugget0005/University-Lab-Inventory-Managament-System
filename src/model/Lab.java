@@ -9,10 +9,10 @@ public class Lab {
     private ArrayList<Room> rooms;
 
     //Constructors
-    public Lab(String name, int nextID, ArrayList<Room> rooms) { //constructor for restoring a lab from a save file
+    public Lab(String name, int nextID) { //constructor for restoring a lab from a save file
         this.name = name;
         this.nextID = nextID;
-        this.rooms = rooms;
+        this.rooms = new ArrayList<>();
     }
 
     public Lab(String name) { //constructor for creating a new lab with default attributes
@@ -29,13 +29,17 @@ public class Lab {
         return selectID;
     }
 
-    public void addRoom(Room room) { //add a new room into the array when user adds rooms to lab structure
+    public boolean addRoom(Room room) { //add a new room into the arraylist when user adds rooms to lab structure
         if(room != null) {
             rooms.add(room);
+
+            return true;
         }
+
+        return false;
     }
 
-    public boolean removeRoom(Room room) { //remove room from the array when user removes rooms to lab structure
+    public boolean removeRoom(Room room) { //remove room from the arraylist when user removes rooms to lab structure
         if(rooms.contains(room)) {
             rooms.remove(room);
 
