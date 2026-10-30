@@ -8,7 +8,7 @@ public abstract class Item {
     private Container parentContainer;
 
     //constructors
-    //constructor with all attributes for restoring a lab from a save file
+    //constructor with all attributes for restoring items in inventory from a save file
     public Item(int itemID, String name, String description, Container parentContainer) {
         this.itemID = itemID;
         this.name = name;
@@ -16,7 +16,7 @@ public abstract class Item {
         this.parentContainer = parentContainer;
     }
 
-    //constructor for creating a new lab with default attributes
+    //constructor for creating a new item with default attributes
     public Item(int itemID, String name, Container parentContainer) {
         this.itemID = itemID;
         this.name = name;
