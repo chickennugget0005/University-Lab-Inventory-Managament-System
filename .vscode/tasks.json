@@ -1,0 +1,18 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "ULIMS: Compile",
+            "type": "process",
+            "command": "powershell.exe",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-Command",
+                "$compiler = if ($env:JAVA_HOME) { Join-Path $env:JAVA_HOME 'bin\\javac.exe' } else { 'C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.6.7-hotspot\\bin\\javac.exe' }; if (-not (Test-Path $compiler)) { Write-Error 'JDK not found. Set JAVA_HOME to your JDK installation.'; exit 1 }; $output = Join-Path '${workspaceFolder}' 'out'; New-Item -ItemType Directory -Force -Path $output | Out-Null; $sources = Get-ChildItem (Join-Path '${workspaceFolder}' 'src') -Recurse -Filter *.java | ForEach-Object { $_.FullName }; & $compiler -d $output $sources; exit $LASTEXITCODE"
+            ],
+            "problemMatcher": "$javac"
+        }
+    ]
+}

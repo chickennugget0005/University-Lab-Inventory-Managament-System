@@ -1,0 +1,2 @@
+ADMIN001|Lab Administrator|true
+USER001|Student User|false

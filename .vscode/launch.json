@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Run ULIMS",
+            "request": "launch",
+            "mainClass": "src.Main",
+            "classPaths": [
+                "${workspaceFolder}\\out"
+            ],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "ULIMS: Compile"
+        }
+    ]
+}
