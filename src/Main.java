@@ -1,22 +1,29 @@
 package src;
+
 import javax.swing.SwingUtilities;
-import ui.LabSetupScreen;
-import ui.LoginScreen;
 
+import src.controller.AppController;
+import src.ui.LoginScreen;
+
+/**
+ * Application entry point for the Swing client.
+ */
 public final class Main {
-    
-    private Main() {}
+    /** Prevents instantiation of the application entry-point class. */
+    private Main() {
+    }
 
+    /**
+     * Creates the controller and displays the login window on Swing's event thread.
+     *
+     * @param args command-line arguments; currently unused
+     */
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(
-        () -> {
-            boolean isConfigured = false;
-
-            if (!isConfigured) {
-                new LabSetupScreen().setVisible(true);
-            } else {
-                new LoginScreen().setVisible(true);
-            }
+        // Build Swing components on the event-dispatch thread so UI events stay responsive.
+        SwingUtilities.invokeLater(() -> {
+            AppController controller = new AppController();
+            LoginScreen loginScreen = new LoginScreen(controller);
+            loginScreen.setVisible(true);
         });
     }
 }
