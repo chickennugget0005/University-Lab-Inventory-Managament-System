@@ -15,11 +15,11 @@ import src.model.Member;
 /**
  * Handles member records in the pipe-delimited {@code members.txt} file.
  */
-public class MamberFileManager {
+public class MemberFileManager {
     private static final Path MEMBERS_FILE = Paths.get("members.txt");
 
     /** Creates the file manager. */
-    public MamberFileManager() {
+    public MemberFileManager() {
     }
 
     /**
