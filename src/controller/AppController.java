@@ -1,29 +1,18 @@
 package src.controller;
 
-<<<<<<< HEAD
-import src.model.*;
-import src.storage.*;
-
-public class AppController {
-    //attributes
-    private Member currentMember;
-    private LabFileManager labFileManager;
-
-=======
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+import src.model.ConsumableItem;
 import src.model.Container;
 import src.model.ContainerCollection;
-import src.model.ConsumableItem;
 import src.model.Item;
 import src.model.Lab;
 import src.model.Member;
 import src.model.ReusableItem;
 import src.model.Room;
 import src.storage.LabFileManager;
-import src.storage.MamberFileManager;
+import src.storage.MemberFileManager;
 
 /**
  * Coordinates authentication, inventory queries, and persistence between the UI and data layers.
@@ -43,11 +32,11 @@ public class AppController {
             LabFileManager.saveLab(currentLab);
         }
 
-        members = new ArrayList<>(MamberFileManager.readMembers());
+        members = new ArrayList<>(MemberFileManager.readMembers());
         if (members.isEmpty()) {
             members.add(new Member("ADMIN001", "Lab Administrator", true));
             members.add(new Member("USER001", "Student User", false));
-            MamberFileManager.writeMembers(members);
+            MemberFileManager.writeMembers(members);
         }
     }
 
@@ -69,11 +58,11 @@ public class AppController {
             return null;
         }
 
-        if (!MamberFileManager.isDatabaseAccessible()) {
+        if (!MemberFileManager.isDatabaseAccessible()) {
             throw new IllegalStateException("Member database is not available.");
         }
 
-        return MamberFileManager.findMemberByStudentId(normalized);
+        return MemberFileManager.findMemberByStudentId(normalized);
     }
 
     /**
@@ -172,7 +161,7 @@ public class AppController {
      * @return {@code true} if the member file was written successfully
      */
     public boolean saveMembers() {
-        return MamberFileManager.writeMembers(members);
+        return MemberFileManager.writeMembers(members);
     }
 
     /**
@@ -213,5 +202,4 @@ public class AppController {
 
         return lab;
     }
->>>>>>> 908d63aa72f698cb4cb353f0fbd5ac91ed245812
 }
