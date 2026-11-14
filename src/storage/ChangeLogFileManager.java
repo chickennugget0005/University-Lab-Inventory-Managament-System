@@ -2,16 +2,34 @@ package src.storage;
 
 import src.model.ChangeLogEntry;
 import java.util.ArrayList;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 
 public class ChangeLogFileManager {
-    public String filePath = "";
+    public static String filePath = "";
     public static ArrayList<ChangeLogEntry> loadEntries()
     {
       //comma separator, timestamp memberID action details, all strings
       ArrayList<ChangeLogEntry> ChangeLog = new ArrayList<ChangeLogEntry>();
-      //bufferedReader
+      try(BufferedReader intake = new BufferedReader(new FileReader(filePath)))
+      {
+         String line;
+      while ((line = intake.readLine()) != null)
+      {
+        line = intake.readLine();
+        String[] newItem = line.split(",");
+        ChangeLogEntry loadedEntry = new ChangeLogEntry(newItem[0], newItem[1], newItem[2], newItem[3]);
+        ChangeLog.add(loadedEntry);
+      }
+      }
+      catch(IOException e)
+      {
+        //error reading log entries from file
+      }
+      return ChangeLog;
 
 
     }
