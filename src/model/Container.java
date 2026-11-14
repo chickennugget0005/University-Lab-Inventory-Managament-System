@@ -66,7 +66,7 @@ public class Container {
      * @param item item to remove
      * @return {@code true} if the item was present and removed
      */
-    public boolean removeContainer(Item item) {
+    public boolean removeItem(Item item) {
         if (items.contains(item)) {
             items.remove(item);
             return true;
