@@ -1,8 +1,10 @@
 package src;
 
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import src.controller.AppController;
+import src.ui.LabSetupScreen;
 import src.ui.LoginScreen;
 
 /**
@@ -15,15 +17,20 @@ public final class Main {
 
     /**
      * Creates the controller and displays the login window on Swing's event thread.
-     *
-     * @param args command-line arguments; currently unused
      */
     public static void main(String[] args) {
         // Build Swing components on the event-dispatch thread so UI events stay responsive.
         SwingUtilities.invokeLater(() -> {
-            AppController controller = new AppController();
-            LoginScreen loginScreen = new LoginScreen(controller);
-            loginScreen.setVisible(true);
+            try {
+                AppController controller = new AppController();
+                // R1.1 first installation shows the setup; launches after show the login
+                if (controller.isSetupRequired()) new LabSetupScreen(controller).setVisible(true);
+                else new LoginScreen(controller).setVisible(true);
+            } catch (RuntimeException ex) {
+                // R1.8 never raplace damaged date with empty lab or bypass authentication
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "ULIMS Startup Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
         });
     }
 }
