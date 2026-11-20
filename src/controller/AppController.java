@@ -46,6 +46,7 @@ public class AppController {
         }
 
         // A half-created lab is not a new installation. Stop so it doesnt break the system.
+        //R1.8: If setup of the lab fails due to invalid data files, the system shall display an error message and refuse to proceed.
         if (!labExists || !membersExist) {
             throw new IllegalStateException(
                 "Incomplete lab setup: lab_data.txt and members.txt must both exist."
