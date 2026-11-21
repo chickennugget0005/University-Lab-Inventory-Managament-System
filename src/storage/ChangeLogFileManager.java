@@ -9,7 +9,7 @@ import java.io.IOException;
 
 
 public class ChangeLogFileManager {
-    public static String filePath = "";
+    public static String filePath = "change_log.txt";
     public static ArrayList<ChangeLogEntry> loadEntries()
     {
       //comma separator, timestamp memberID action details, all strings
@@ -27,7 +27,7 @@ public class ChangeLogFileManager {
       }
       catch(IOException e)
       {
-        //error reading log entries from file
+        return null;
       }
       return ChangeLog;
 
@@ -53,7 +53,6 @@ public class ChangeLogFileManager {
       catch(SecurityException e)
       {
          added = false;
-         // TODO: file can't be accessed due to permissions, maybe add some sort of return/printing to main about this error if necessary later. But not critical.
       }
       return added;
 
