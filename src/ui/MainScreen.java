@@ -77,14 +77,14 @@ public class MainScreen extends JFrame {
             JButton manage = new JButton("Manage Users (Preview)");
             manage.addActionListener(event -> {
                 controller.requireAdmin(member);
-                new UserManagementScreen(controller).setVisible(true);
+                new UserManagementScreen(controller, member).setVisible(true);
             });
             controls.add(manage);
 
             JButton log = new JButton("Change Log (Preview)");
             log.addActionListener(event -> {
                 controller.requireAdmin(member);
-                new ChangeLogScreen().setVisible(true);
+                new ChangeLogScreen(controller, member).setVisible(true);
             });
             controls.add(log);
         }
